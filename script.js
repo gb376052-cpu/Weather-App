@@ -11,7 +11,7 @@ const latitude = document.getElementById('latitude');
 const longitude = document.getElementById('longitude');
 const message = document.getElementById('message');
 
-// Expanded Weather Code Mapping (Open-Meteo WMO Codes)
+// Weather Code Mapping
 const weatherCodes = {
     0: 'Clear Sky ☀️',
     1: 'Mainly Clear 🌤️',
@@ -49,7 +49,6 @@ async function getWeather() {
     message.innerText = 'Fetching weather...';
 
     try {
-        // Step 1: Safe API query using encodeURIComponent
         const searchQuery = encodeURIComponent(city);
         const geoResponse = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${searchQuery}&count=10&language=en&format=json`);
         const geoData = await geoResponse.json();
@@ -60,9 +59,9 @@ async function getWeather() {
             return;
         }
 
-        // Step 2: Match result with country if country is specified
-        let location = geoData.results[0];
+        let location;
 
+        // Validation: Check if specific country is requested
         if (countryFilter) {
             const matchedLocation = geoData.results.find(res => {
                 const cName = (res.country || '').toLowerCase();
@@ -70,33 +69,38 @@ async function getWeather() {
                 return cName.includes(countryFilter) || cCode === countryFilter;
             });
 
-            if (matchedLocation) {
-                location = matchedLocation;
+            // Agar enter ki gayi country me city nahi mili
+            if (!matchedLocation) {
+                message.innerText = `"${city}" was not found in specified country!`;
+                weatherInfo.classList.add('hidden');
+                return;
             }
+
+            location = matchedLocation;
+        } else {
+            location = geoData.results[0];
         }
 
         const lat = location.latitude;
         const lon = location.longitude;
         const country = location.country ? location.country : '';
 
-        // Step 3: Fetch Live Weather Data using Lat & Lon
+        // Fetch Live Weather Data
         const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
         const weatherData = await weatherResponse.json();
 
         const current = weatherData.current_weather;
 
-        // Step 4: Display Data
+        // Display Data
         cityName.innerText = country ? `${location.name}, ${country}` : location.name;
         temperature.innerText = Math.round(current.temperature);
         windSpeed.innerText = `${current.windspeed} km/h`;
         latitude.innerText = lat.toFixed(2);
         longitude.innerText = lon.toFixed(2);
 
-        // Map Weather Code to Readable Condition
         const conditionText = weatherCodes[current.weathercode] || 'Cloudy ⛅';
         weatherCondition.innerText = conditionText;
 
-        // Show Info Card
         message.innerText = '';
         weatherInfo.classList.remove('hidden');
 
