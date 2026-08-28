@@ -13,10 +13,14 @@
     <div class="weather-container">
         <!-- Search & Controls Bar -->
         <div class="search-box">
-            <input type="text" id="city-input" placeholder="Enter city name..." autocomplete="off">
-            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <button id="loc-btn" title="Use Current Location"><i class="fa-solid fa-location-crosshairs"></i></button>
-            <button id="unit-toggle">°C</button>
+            <div class="input-group">
+                <input type="text" id="city-input" placeholder="Enter city..." autocomplete="off">
+                <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="action-buttons">
+                <button id="loc-btn" title="Use Current Location"><i class="fa-solid fa-location-crosshairs"></i></button>
+                <button id="unit-toggle">°C</button>
+            </div>
         </div>
 
         <!-- Recent Searches Dropdown / List -->
