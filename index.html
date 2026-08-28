@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Weather App</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="weather-container">
+        <!-- Search & Controls Bar -->
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="Enter city name..." autocomplete="off">
+            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button id="loc-btn" title="Use Current Location"><i class="fa-solid fa-location-crosshairs"></i></button>
+            <button id="unit-toggle">°C</button>
+        </div>
+
+        <!-- Recent Searches Dropdown / List -->
+        <div id="recent-cities" class="recent-cities"></div>
+
+        <!-- Main Weather Card -->
+        <div class="weather-main" id="weather-main">
+            <div class="location-details">
+                <h1 id="city-name">--, --</h1>
+                <p id="date-time">-- -- ----, --:-- --</p>
+            </div>
+            
+            <div class="temp-weather-box">
+                <img src="" alt="Weather Icon" id="weather-icon">
+                <div>
+                    <h2 id="temperature">--°</h2>
+                    <p id="weather-description">Loading...</p>
+                </div>
+            </div>
+
+            <!-- Additional Metrics Grid -->
+            <div class="weather-metrics">
+                <div class="metric">
+                    <i class="fa-solid fa-temperature-half"></i>
+                    <span>Feels Like</span>
+                    <h4 id="feels-like">--°</h4>
+                </div>
+                <div class="metric">
+                    <i class="fa-solid fa-droplet"></i>
+                    <span>Humidity</span>
+                    <h4 id="humidity">--%</h4>
+                </div>
+                <div class="metric">
+                    <i class="fa-solid fa-wind"></i>
+                    <span>Wind Speed</span>
+                    <h4 id="wind-speed">-- km/h</h4>
+                </div>
+                <div class="metric">
+                    <i class="fa-solid fa-gauge"></i>
+                    <span>Pressure</span>
+                    <h4 id="pressure">-- hPa</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5-Day Forecast Section -->
+        <div class="forecast-section">
+            <h3>5-Day Forecast</h3>
+            <div class="forecast-container" id="forecast-container">
+                <!-- Forecast cards will be injected dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
