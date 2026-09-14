@@ -37,17 +37,6 @@ body {
     width: 100%;
 }
 
-.input-group {
-    display: flex;
-    flex: 1;
-    gap: 6px;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 6px;
-}
-
 .search-box input {
     flex: 1;
     min-width: 0; /* Input ko container ke andar fix rakhne ke liye */
@@ -78,10 +67,6 @@ body {
 
 .search-box button:hover {
     background: rgba(255, 255, 255, 0.4);
-}
-
-.search-box button:active {
-    transform: scale(0.95);
 }
 
 /* Recent Cities Pills */
@@ -160,12 +145,6 @@ body {
     flex-direction: column;
     gap: 3px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.metric:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.15);
 }
 
 .metric i {
@@ -200,7 +179,6 @@ body {
 .forecast-container::-webkit-scrollbar {
     height: 3px;
 }
-
 .forecast-container::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
@@ -214,12 +192,6 @@ body {
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
     flex-shrink: 0;
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.forecast-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.2);
 }
 
 .forecast-card p {
@@ -234,30 +206,4 @@ body {
 .forecast-card h4 {
     font-size: 13px;
     margin-top: 4px;
-}
-
-/* ==================== ANIMATIONS ==================== */
-
-@keyframes popIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.animate-pop {
-    animation: popIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.fa-spinner {
-    animation: spin 1s linear infinite;
 }
